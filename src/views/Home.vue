@@ -11,11 +11,7 @@
       </p>
 
       <div class="columns is-multiline">
-        <div
-          v-for="(item, index) in pasteStore.pastes"
-          :key="`${item}-${index}`"
-          class="column is-12"
-        >
+        <div v-for="item in pasteStore.pastes" :key="`${item}`" class="column is-12">
           <Tile :item="item" />
         </div>
       </div>
