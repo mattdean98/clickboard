@@ -1,6 +1,6 @@
 import { defineStore } from 'pinia';
 
-export const usePasteStore = defineStore('pasteStore', {
+export default defineStore('pasteStore', {
   state() {
     return {
       pastes: [],
