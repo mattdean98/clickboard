@@ -1,0 +1,224 @@
+{
+  "Prep For Data Template Code": {
+    "description": "Make template snippet for when waiting and showing empty and complete data",
+    "scope": "vue-html",
+    "prefix": "prepdata",
+    "body": [
+      "<template v-if=\"${1}\">",
+      "  <template v-if=\"${2}\">",
+      "  </template>",
+      "  <EmptyData v-else/>",
+      "</template>",
+      "<Loading v-else/>"
+    ]
+  },
+
+  "New API Endpoint": {
+    "description": "Make new api endpoint",
+    "scope": "javascript",
+    "prefix": "initendpoint",
+    "body": [
+      "${1}_${2}_${3}(memberNumber, token) {",
+      "return client.${2}(`/members/${${memberNumber}}/${1}/${4}`, {",
+      "headers: {",
+      "Authorization: `Bearer ${${token}}`,",
+      "},",
+      "});",
+      "},"
+    ]
+  },
+
+  "New Action": {
+    "description": "Make new action for store",
+    "scope": "javascript",
+    "prefix": "initaction",
+    "body": [
+      "/**",
+      "* ${3}",
+      "*/",
+      "async get${1}({ rootGetters, commit }) {",
+      "const response = await api.${2}(",
+      "rootGetters['auth/getToken']",
+      ");",
+      "commit('set${1}', response.data);",
+      "return response.data;",
+      "},"
+    ]
+  },
+
+  "New Mutation": {
+    "description": "Make new mutation for store",
+    "scope": "javascript",
+    "prefix": "initmutation",
+    "body": ["set$1(state, _$1) {", "  state.$1 = _$1;", "},"]
+  },
+
+  "Initialize Component": {
+    "description": "Make new bare-bone component",
+    "scope": "javascript",
+    "prefix": "initcomp",
+    "body": [
+      "Vue.component('${1}', () => import(/* webpackChunkName: \"${2}\" */ '@/components/${3}/${2}/${2}'));"
+    ]
+  },
+
+  "New Component": {
+    "description": "Make new bare-bone component",
+    "scope": "vue",
+    "prefix": "newcomp",
+    "body": [
+      "<template>",
+      "  <div>",
+      "    <p>${1:test}</p>",
+      "  </div>",
+      "</template>",
+      "",
+      "<script>",
+      "// - components",
+      "// - mixins",
+      "// - props",
+      "// - data",
+      "// - computed",
+      "// - watch",
+      "// - lifecycle",
+      "// - methods",
+      "// - template",
+      "",
+      "  export default {",
+      "    $0",
+      "  };",
+      "</script>",
+      ""
+    ]
+  },
+
+  "New Story": {
+    "description": "Make new bare-bone story",
+    "scope": "javascript",
+    "prefix": "newstory",
+    "body": [
+      "import store from '@/utils/mock-store';",
+      "import $1 from './$2.vue';",
+      "",
+      "export default {",
+      "  component: $1,",
+      "  title: '$3/$1',",
+      "  subtitle: '$4'",
+      "};",
+      "",
+      "const Template = (args, { argTypes }) => ({",
+      "  components: { $1 },",
+      "  props: Object.keys(argTypes),",
+      "  store,",
+      "  template: `<$1 v-bind=\"$$props\"/>`",
+      "});",
+      "",
+      "export const Showcase = Template.bind({});",
+      "Showcase.args = {};"
+    ]
+  },
+
+  "New Mini Story": {
+    "description": "Make new bare-bone story",
+    "scope": "javascript",
+    "prefix": "newministory",
+    "body": [
+      "import $1 from './$2.vue';",
+      "",
+      "export default {",
+      "  component: $1,",
+      "  title: '$3/$1',",
+      "  subtitle: '$4'",
+      "};",
+      "",
+      "const Template = (args, { argTypes }) => ({",
+      "  components: { $1 },",
+      "  props: Object.keys(argTypes),",
+      "  template: `<$1 v-bind=\"$$props\"/>`",
+      "});",
+      "",
+      "export const Showcase = Template.bind({});",
+      "Showcase.args = {};"
+    ]
+  },
+
+  // "New Story -- Legacy": {
+  //   "description": "Make new bare-bone story",
+  //   "scope": "javascript",
+  //   "prefix": "newstory",
+  //   "body": [
+  //     "import Vuex from 'vuex';",
+  //     "import $1 from './$2.vue';",
+  //     "import store from '@/utils/mock-store';",
+  //     "",
+  //     "export default {",
+  //     "  title: '$3/$1',",
+  //     "  component: $1,",
+  //     "};",
+  //     "",
+  //     "export const basic = () => ({",
+  //     "  components: {",
+  //     "    $1,",
+  //     "  },",
+  //     "  store,",
+  //     "  template: `",
+  //     "    <$1/>",
+  //     "  `,",
+  //     "});      "
+  //   ]
+  // },
+
+  // "New Mini Story -- Legacy": {
+  //   "description": "Make new bare-bone story",
+  //   "scope": "javascript",
+  //   "prefix": "newministory",
+  //   "body": [
+  //     "import $1 from './$2.vue';",
+  //     "",
+  //     "export default {",
+  //     " title: '$3/$1',",
+  //     " component: $1,",
+  //     "};",
+  //     "",
+  //     "export const basic = () => ({",
+  //     "  components: {",
+  //     "    $1",
+  //     "  },",
+  //     "  template: `",
+  //     "    <$1/>",
+  //     "  `",
+  //     "});"
+  //   ]
+  // },
+
+  "Deep Copy": {
+    "description": "Make a deep copy of a variable",
+    "scope": "javascript",
+    "prefix": "deepcopy",
+    "body": ["JSON.parse(JSON.stringify($1))"]
+  },
+
+  "Print to console": {
+    "description": "Log output to console",
+    "scope": "javascript,typescript",
+    "prefix": "log",
+    "body": ["console.log('$1');", "$2"]
+  },
+
+  "Promise/Try/Catch Block": {
+    "description": "Promise/Try/Catch Block",
+    "scope": "javascript",
+    "prefix": "return",
+    "body": [
+      "return new Promise((resolve, reject) => {",
+      "  try {",
+      "    $1",
+      "    ",
+      "    resolve();",
+      "  } catch(error) {",
+      "    reject(error);",
+      "  }",
+      "});"
+    ]
+  }
+}

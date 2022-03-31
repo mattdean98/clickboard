@@ -1,18 +1,25 @@
 <template>
-  <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
-  </div>
+  <section class="section">
+    <div class="container">
+      <h1 class="title">ClickBoard</h1>
+      <p class="subtitle">
+        Have this window focused and paste! (<strong>ctrl + v </strong>or<strong>
+          command + v
+        </strong>
+        )
+      </p>
+    </div>
+  </section>
 </template>
 
 <script>
-// @ is an alias to /src
-import HelloWorld from '@/components/HelloWorld.vue';
+import { usePasteStore } from '@/stores/paste';
 
 export default {
-  name: 'Home',
-  components: {
-    HelloWorld,
+  setup() {
+    const pasteStore = usePasteStore();
+
+    return { pasteStore };
   },
 };
 </script>

@@ -1,4 +1,4 @@
 module.exports = {
   // options...
-  publicPath: "/clickboard",
+  publicPath: process.env.VUE_APP_ENVIRONMENT === 'prod' ? '/clickboard' : '',
 };
