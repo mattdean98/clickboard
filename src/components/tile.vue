@@ -4,7 +4,14 @@
     class="notification"
     :class="{ 'is-success is-light': showCopied }"
   >
+    <button @click="onDeleteClick()" class="delete"></button>
+
     {{ item }}
+
+    <span v-if="showCopied" class="copiedLabel is-size-7">
+      <i class="fa-solid fa-check"></i>
+      Copied!
+    </span>
   </div>
 </template>
 
@@ -32,6 +39,7 @@ export default {
   data() {
     return {
       showCopied: false,
+      canCopy: true,
     };
   },
 
@@ -42,8 +50,18 @@ export default {
 
   methods: {
     copyToClipboard() {
-      navigator.clipboard.writeText(this.item);
-      this.showCopiedLabel();
+      if (this.canCopy) {
+        navigator.clipboard.writeText(this.item);
+        this.showCopiedLabel();
+      }
+    },
+
+    onDeleteClick() {
+      this.canCopy = false;
+      this.$emit('delete');
+      setTimeout(() => {
+        this.canCopy = true;
+      }, 100);
     },
 
     showCopiedLabel() {
@@ -70,8 +88,17 @@ export default {
   margin-top: 0rem;
 
   &:hover {
-    margin-top: -0.3rem;
-    margin-bottom: 0.3rem;
+    margin-top: -0.2rem;
+    margin-bottom: 0.2rem;
   }
+}
+
+.copiedLabel {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+
+  padding-bottom: 0.2rem;
+  padding-right: 0.4rem;
 }
 </style>

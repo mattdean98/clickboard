@@ -11,8 +11,8 @@
       </p>
 
       <div class="columns is-multiline">
-        <div v-for="item in pasteStore.pastes" :key="`${item}`" class="column is-12">
-          <Tile :item="item" />
+        <div v-for="(item, index) in pasteStore.pastes" :key="`${item}`" class="column is-12">
+          <Tile @delete="removeFromStore(index)" :item="item" />
         </div>
       </div>
     </div>
@@ -46,6 +46,10 @@ export default {
   methods: {
     addToStore(item) {
       this.pasteStore.addToPastes(item);
+    },
+
+    removeFromStore(index) {
+      this.pasteStore.removeFromPastes(index);
     },
   },
 };

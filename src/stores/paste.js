@@ -11,5 +11,9 @@ export default defineStore('pasteStore', {
     addToPastes(item) {
       this.pastes.unshift(item);
     },
+
+    removeFromPastes(index) {
+      this.pastes.splice(index, 1);
+    },
   },
 });
